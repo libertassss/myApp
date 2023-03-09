@@ -1,6 +1,7 @@
 import { Component, PropsWithChildren } from 'react'
 import { View, Button } from '@tarojs/components'
 import './index.less'
+import { helth } from '../../server'
 
 export default class Index extends Component<PropsWithChildren> {
 
@@ -16,8 +17,8 @@ export default class Index extends Component<PropsWithChildren> {
 
   componentDidHide () { }
 
-  login () {
-    
+  async login () {
+    await helth()
   }
 
   render () {
