@@ -1,7 +1,12 @@
+import Taro from "@tarojs/taro"
+import { Button, Text } from "@tarojs/components"
 import { Component, PropsWithChildren } from 'react'
-import { View, Button } from '@tarojs/components'
 import './index.less'
 import { helth } from '../../server'
+import Layout from '../../components/layout'
+
+
+
 
 export default class Index extends Component<PropsWithChildren> {
 
@@ -20,12 +25,21 @@ export default class Index extends Component<PropsWithChildren> {
   async login () {
     await helth()
   }
+  getActive (id: number) {
+    console.log(id)
+  }
+
+  goHome () {
+    Taro.navigateTo({
+      url: '../home/index'
+    })
+  }
+
 
   render () {
-    return (
-      <View className='index'>
-        <Button onClick={this.login}>登录</Button>
-      </View>
-    )
+    return <Layout>
+      <Text className='title'>Welcome</Text>
+      <Button className='btn-go' onTap={this.goHome}>Go!</Button>
+    </Layout>
   }
 }
