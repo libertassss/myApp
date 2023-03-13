@@ -6,3 +6,13 @@ export const helth = async () => {
     return res
 }
 
+interface nameParams {
+    sex: string
+    attributes: (string | undefined)[]
+    firstName?: string
+}
+export const getName = async (params: nameParams) => {
+    const res = await Taro.request({url: `${host}/api/chat-gpt/ai-name/people-name`, data: params, method: 'POST'})
+    return res
+}
+

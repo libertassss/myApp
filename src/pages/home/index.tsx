@@ -6,16 +6,18 @@ import { tags } from "../../constants"
 import Layout from '../../components/layout'
 import './index.less'
 import { TAG } from "../../interface"
+import { getName } from "../../server"
+
 
 const STEP_ONE = 1
 const STEP_TOW = 2
-const MALE = 0
-const FEMALE = 1
+const MALE = '男'
+const FEMALE = '女'
 
 const Home: FC = () => {
         const [activeTags, setActiveTags] = useState<Set<number>>(new Set())
         const [step, setStep] = useState<number>(STEP_ONE)
-        const [gender, setGender] = useState<0 | 1>(MALE)
+        const [gender, setGender] = useState<'男' | '女'>(MALE)
         const getActive = (tag: TAG) => {
         if(tag.active){
             activeTags?.add(tag.id)
@@ -25,13 +27,20 @@ const Home: FC = () => {
         setActiveTags(activeTags)
         }
 
-        const next = () => {
+        const next = async () => {
+          if(!activeTags.size){
+            return
+          }
             if(step === STEP_ONE){
                 setStep(STEP_TOW)
                 return
             }
+            const actives = tags.filter((tag: TAG) => activeTags.has(tag.id))
+            const attributes = actives?.map((tag: TAG) => tag.desc)
+            const res = await getName({attributes, sex: gender, firstName: '钟'})
+            console.log(res)
         }
-        const onCheck = (value: 0 | 1) => {
+        const onCheck = (value: '男'|'女') => {
             setGender(value)
         }
       return <Layout>
@@ -78,8 +87,8 @@ const Home: FC = () => {
                 </View>
               </View>
           </View>
-        }    
-      <Button className='next-btn' onTap={next}>下一步</Button>
+        }  
+      <Button className='next-btn'  onTap={next}>下一步</Button>
     </Layout>
   }
 
