@@ -1,3 +1,5 @@
+import { TAG } from "../interface";
+
 export const tags: TAG[] = [
     {
         id: 0,

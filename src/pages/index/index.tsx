@@ -1,5 +1,5 @@
 import Taro from "@tarojs/taro"
-import { Button, Text, Image, View } from "@tarojs/components"
+import { Button, Text, View } from "@tarojs/components"
 import { Component, PropsWithChildren } from 'react'
 import './index.less'
 import { helth } from '../../server'
