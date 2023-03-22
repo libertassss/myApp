@@ -39,10 +39,10 @@ export default class Index extends Component<PropsWithChildren> {
   render () {
     return <Layout>
       <View className='content'>
-        <View className='icon' />
-        <Text className='title'>Welcome</Text>
-        <Text className='desc'>名字也许只是个代号</Text>
-        <Button className='btn-go' onTap={this.goHome}>Go!</Button>
+        <Text className='desc'>
+          
+        </Text>
+        <Button className='btn-go' onTap={this.goHome}>去取名</Button>
       </View>
     </Layout>
   }
